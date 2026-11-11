@@ -53,26 +53,23 @@ LayerNorm → Gated-FFN（DWConv + 门控 GELU）。
 
 ## 运行环境
 
-论文实验环境（`nets/DWM_Deformable_Transformer.py` 中的邻域注意力
-NATTEN 算子按此环境配置）：
+**NATTEN 是必需依赖**：DD-SAR 的邻域注意力基于
+[NATTEN](https://www.shi-labs.com/natten/) 算子实现，论文实验环境如下：
 
 | 项目 | 版本 |
 |------|------|
 | 操作系统 | Linux |
-| 邻域注意力算子 | [NATTEN](https://www.shi-labs.com/natten/) `natten==0.17.5` |
+| 邻域注意力算子 | `natten==0.17.5`（提供 `na2d_qk`/`na2d_av` 分离 API，支持相对位置偏置） |
 | PyTorch | 2.x（与 natten 0.17.5 官方 wheel 兼容的版本，如 torch≤2.5） |
 | GPU | NVIDIA CUDA |
 
-本仓库亦可在无 NATTEN 的环境（含 Windows / 新版 PyTorch）直接运行：未检测到
-`natten==0.17.x` 时自动使用仓库内置的纯 PyTorch 邻域注意力实现（数学等价、含 rpb）。
-已验证环境：Windows 10 / Python 3.12 / PyTorch 2.14.1+cu126 / 无 NATTEN。
+> 注意：`natten>=0.20` 移除了 `na2d_qk`/`na2d_av` 分离 API，且其新融合算子
+> 不支持 DD-SAR 所需的 `head_dim=4`，**不适用**于本仓库，请安装 `natten==0.17.5`。
 
 安装依赖：
 
 ```bash
 pip install -r requirements.txt
-# 论文原始加速路径 (可选, Linux):
-pip install natten==0.17.5
 ```
 
 ## 数据准备

@@ -1,0 +1,13 @@
+torch>=1.13
+torchvision
+numpy
+opencv-python
+einops>=0.6
+Pillow
+dominate
+
+# NATTEN 邻域注意力算子 (必需, 仅提供 Linux wheel):
+#   pip install natten==0.17.5
+# 官方 wheel 索引: https://www.shi-labs.com/natten/
+# 注意: natten>=0.20 不适用 (移除了 na2d_qk/na2d_av 分离 API), 见 README。
+natten==0.17.5; sys_platform == "linux"
