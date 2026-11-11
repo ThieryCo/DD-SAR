@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Environments
+.env
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Experiment outputs
+datasets/
+results/
+checkpoints/*/web/
+checkpoints/*/loss_log.txt
+checkpoints/*/opt.txt
+
+# Keep the pretrained weights
+!checkpoints/Entry/4/latest_net_Entry.pth
